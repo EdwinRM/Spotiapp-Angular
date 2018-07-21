@@ -9,13 +9,17 @@ import { SpotifyService } from '../../services/spotify.service';
 export class ArtistaComponent {
 
   artista: any = {};
+  topTracks: any[] = [];
+
   louding:boolean;
   
   constructor(private router: ActivatedRoute, private spotify: SpotifyService) {
     this.louding=true;
 
     this.router.params.subscribe( params =>{
-      this.getArtist(params['id']);     
+      this.getArtist(params['id']);  
+      this.getTopTracks(params['id']);   
+      
     }); //prametros recibidos por el url    
    }
 
@@ -29,4 +33,16 @@ this.louding=false;
 });
 
    }
+  
+getTopTracks( id:string ){
+
+this.spotify.getToptracks( id )//lo obtenos del servicio en spotify.service.ts
+.subscribe( topTracks =>{
+console.log(topTracks);
+this.topTracks = topTracks;
+});
+}
+
+
+
 }
