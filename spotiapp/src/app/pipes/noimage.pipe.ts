@@ -8,11 +8,11 @@ export class NoimagePipe implements PipeTransform {
   transform(images: any[]): string {
 
     if(!images){
-      return 'assets/img/noimage.png';
+      return 'assets/img/noimage.png'; //consigo todo el arreglo y si no tiene imagen mando esta
     }
 
     if( images.length > 0){
-      return images[0].url;
+      return images[0].url; //mando la img correpondiente
     }else{
       return 'assets/img/noimage.png';
     }
